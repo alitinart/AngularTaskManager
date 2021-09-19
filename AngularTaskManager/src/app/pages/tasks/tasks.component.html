@@ -1,0 +1,31 @@
+<div class="container tasks">
+    <div class="row contentContainer" style="height: 600px;">
+        <div class="col-md-3 listMenu">
+            <div class="listContainer">
+                <h2 class="sectionHeader">
+                    Lists
+                </h2>
+                <ul style="height: 430px;">
+                    <li><button class="listSelector" *ngFor='let list of lists' [routerLink]='["/lists", list._id]' routerLinkActive ='activeLink'>{{ list.title }}</button></li>
+                </ul>
+                <button class="listSelector addButton" routerLink='/new-list'><i class="bi bi-plus addPlus">Add list</i></button>
+            </div>
+        </div>
+        <div class="col-md-9 listTaskMenus">
+            <h2 class="sectionHeader">{{status}}</h2>
+            <div class="container-fluid task" (click)='onTaskClick(task)' *ngFor='let task of tasks' [ngClass]="{ 'taskDone': task.completed,'taskDeleted': task.deleted }">
+                <div class="row">
+                    <div class="col-md-10"> 
+                        <p class="taskDescription">{{ task.title }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <i class="bi bi-x deleteTaskIcon" (click)='deleteTask(task)'></i>
+                        <p class="deletedText">Deleted</p>
+                    </div>
+                </div>
+            </div>
+            <button class="addTaskButton" routerLink='./new-task'><i class="bi bi-plus"></i></button>
+            <!-- <button class="editListButton" routerLink='./edit-task'><i class="bi bi-pencil-square"></i></button> -->
+        </div>
+    </div>
+</div>
